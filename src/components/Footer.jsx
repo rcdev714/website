@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="border-t border-border/40 py-12 px-6 md:px-8">
       <div className="container flex flex-col items-center justify-between gap-8 md:h-24 md:flex-row md:py-0">
         <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-          &copy; {new Date().getFullYear()} <span className="text-primary font-bold">AnyMarket Inc.</span> All rights reserved.
+          &copy; {new Date().getFullYear()} <span className="text-primary font-medium tracking-wide">AnyMarket Inc.</span> All rights reserved.
         </p>
         <nav className="flex flex-wrap justify-center gap-6 sm:gap-10" aria-label="Legal and Support links">
           <Link to="/privacy" className="text-sm font-medium text-accent hover:text-primary transition-all underline underline-offset-4 decoration-transparent hover:decoration-primary" aria-label="View Privacy Policy">

@@ -4,26 +4,26 @@
 
 @layer base {
   :root {
-    --background: 226 43% 3%; /* Darker Navy */
-    --foreground: 210 20% 98%; /* Silver text */
-    --card: 226 43% 5%;
+    --background: 226 43% 3%; /* Darkest Navy */
+    --foreground: 210 20% 98%; /* Silver/White text */
+    --card: 226 43% 4%;
     --card-foreground: 210 20% 98%;
     --popover: 226 43% 3%;
     --popover-foreground: 210 20% 98%;
-    --primary: 43 89% 55%; /* Gold */
+    --primary: 0 0% 100%; /* Pure White */
     --primary-foreground: 226 43% 4%;
-    --secondary: 226 43% 10%; /* Deep Blue for buttons */
-    --secondary-foreground: 43 89% 55%; /* Gold text for deep blue buttons */
-    --muted: 226 43% 12%;
-    --muted-foreground: 215 15% 75%; /* Brighter silver for visibility */
-    --accent: 214 53% 85%; /* Brighter Silver/Blue Metallic */
+    --secondary: 226 43% 8%; /* Deep Blue */
+    --secondary-foreground: 0 0% 100%; /* White text */
+    --muted: 226 43% 10%;
+    --muted-foreground: 215 15% 65%; /* Muted Silver */
+    --accent: 210 20% 98%; /* White/Silver */
     --accent-foreground: 226 43% 4%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
-    --border: 43 89% 55% / 0.15; /* Subtle Gold borders by default */
-    --input: 226 43% 10%;
-    --ring: 43 89% 55%;
-    --radius: 1rem;
+    --border: 0 0% 100% / 0.1; /* White lines */
+    --input: 226 43% 8%;
+    --ring: 0 0% 100% / 0.5;
+    --radius: 0.75rem;
   }
 }
 
@@ -38,7 +38,7 @@
     @apply bg-white/5 backdrop-blur-md border border-white/10;
   }
   .text-metallic {
-    @apply bg-clip-text text-transparent bg-gradient-to-b from-accent to-accent/40;
+    @apply text-white;
   }
 }
 

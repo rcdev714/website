@@ -15,20 +15,20 @@ export default function Header() {
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between px-6 sm:px-8">
         <div className="mr-4 hidden md:flex items-center">
           <Link to="/" className="mr-8 flex items-center space-x-3 group" aria-label="AnyMarket Home">
-            <div className="w-10 h-10 rounded-xl bg-secondary border border-primary/20 p-1.5 flex items-center justify-center transition-transform group-hover:scale-110 shadow-lg shadow-primary/5">
+            <div className="w-10 h-10 rounded-xl bg-secondary border border-primary/10 p-1.5 flex items-center justify-center transition-all group-hover:scale-110 group-hover:border-primary/30 shadow-lg shadow-primary/5">
               <img src="/icon.png" alt="AnyMarket Logo" className="w-full h-full object-contain" />
             </div>
-            <span className="hidden font-black text-xl tracking-tighter text-accent sm:inline-block">AnyMarket</span>
+            <span className="hidden font-light text-2xl tracking-tighter text-accent/90 sm:inline-block">AnyMarket</span>
           </Link>
           <NavigationMenu aria-label="Main Navigation">
-            <NavigationMenuList className="gap-2">
+            <NavigationMenuList className="gap-4">
               <NavigationMenuItem>
-                <Link to="/" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-muted-foreground hover:text-primary transition-colors font-medium")} aria-label="Go to Home Page">
+                <Link to="/" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-muted-foreground/60 hover:text-primary transition-colors font-light text-sm tracking-wide uppercase")} aria-label="Go to Home Page">
                   Home
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link to="/support" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-muted-foreground hover:text-primary transition-colors font-medium")} aria-label="Go to Support Page">
+                <Link to="/support" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-muted-foreground/60 hover:text-primary transition-colors font-light text-sm tracking-wide uppercase")} aria-label="Go to Support Page">
                   Support
                 </Link>
               </NavigationMenuItem>
@@ -42,7 +42,7 @@ export default function Header() {
             <div className="w-10 h-10 rounded-xl bg-secondary border border-primary/20 p-1.5 flex items-center justify-center">
               <img src="/icon.png" alt="AnyMarket Logo" className="w-full h-full object-contain" />
             </div>
-            <span className="font-black text-xl tracking-tighter text-accent">AnyMarket</span>
+            <span className="font-light text-2xl tracking-tighter text-accent/90">AnyMarket</span>
           </Link>
 
           <div className="w-full flex-1 md:w-auto md:flex-none">
@@ -54,7 +54,7 @@ export default function Header() {
               rel="noreferrer"
               aria-label="Launch AnyMarket Web Application"
             >
-              <Button size="sm" className="bg-secondary border border-primary/30 text-primary hover:bg-secondary/80 font-bold px-6 rounded-full shadow-lg transition-all active:scale-95">
+              <Button size="sm" className="bg-secondary/50 border border-primary/20 text-primary/80 hover:bg-secondary hover:text-primary font-medium px-6 rounded-full shadow-lg transition-all active:scale-95">
                 Open App
               </Button>
             </a>
