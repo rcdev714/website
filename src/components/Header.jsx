@@ -49,7 +49,7 @@ export default function Header() {
           </div>
           <nav className="flex items-center space-x-4" aria-label="External Links">
             <a
-              href="https://anymarket--ijjy615w7s.expo.app/"
+              href="https://anymarket.expo.app/"
               target="_blank"
               rel="noreferrer"
               aria-label="Launch AnyMarket Web Application"

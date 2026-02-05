@@ -70,7 +70,7 @@ export default function Home() {
           </motion.div>
           
           <motion.div variants={fadeInUp} className="flex flex-col gap-6 justify-center items-center sm:flex-row pt-8">
-            <a href="https://anymarket--ijjy615w7s.expo.app/" target="_blank" rel="noreferrer" aria-label="Open AnyMarket Web App">
+            <a href="https://anymarket.expo.app/" target="_blank" rel="noreferrer" aria-label="Open AnyMarket Web App">
               <Button size="lg" className="h-16 px-12 text-xl rounded-full bg-secondary border border-primary/30 text-primary hover:bg-secondary/80 hover:border-primary/60 shadow-[0_0_40px_rgba(212,175,55,0.1)] transition-all hover:scale-105 active:scale-95 group">
                 Launch App <ArrowRight className="ml-2 h-6 w-6 transition-transform group-hover:translate-x-1" />
               </Button>
@@ -235,7 +235,7 @@ export default function Home() {
               "Accuracy is the only currency that matters."
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
-              <a href="https://anymarket--ijjy615w7s.expo.app/" target="_blank" rel="noreferrer" className="w-full sm:w-auto">
+              <a href="https://anymarket.expo.app/" target="_blank" rel="noreferrer" className="w-full sm:w-auto">
                 <Button size="lg" className="w-full h-16 px-16 text-xl rounded-full bg-primary text-primary-foreground font-black shadow-2xl hover:scale-105 transition-transform active:scale-95">
                   Launch AnyMarket
                 </Button>
