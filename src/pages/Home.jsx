@@ -13,7 +13,7 @@ import {
   Settings,
   CheckCircle2
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -50,14 +50,14 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-white/5 rounded-full pointer-events-none opacity-20" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-white/5 rounded-full pointer-events-none opacity-20" />
 
-        <motion.div 
+        <Motion.div 
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
           variants={stagger}
           className="container relative z-10 space-y-8"
         >
-          <motion.div variants={fadeInUp} className="flex flex-col items-center space-y-8">
+          <Motion.div variants={fadeInUp} className="flex flex-col items-center space-y-8">
             <div className="w-24 h-24 rounded-3xl border border-white/10 p-4 bg-white/5 flex items-center justify-center">
               <img src="/icon.png" alt="AnyMarket Logo" className="w-full h-full object-contain" />
             </div>
@@ -69,17 +69,17 @@ export default function Home() {
                 Predict everything with friends
               </p>
             </div>
-          </motion.div>
+          </Motion.div>
           
-          <motion.div variants={fadeInUp} className="flex flex-col gap-6 justify-center items-center sm:flex-row pt-8">
+          <Motion.div variants={fadeInUp} className="flex flex-col gap-6 justify-center items-center sm:flex-row pt-8">
             <a href="https://anymarket.expo.app/" target="_blank" rel="noreferrer" aria-label="Open AnyMarket Web App">
               <Button size="lg" className="h-16 px-12 text-xl rounded-full bg-white text-black hover:bg-white/90 shadow-xl transition-all hover:scale-[1.02] active:scale-95 group font-medium border-none">
                 Launch App <ArrowRight className="ml-2 h-6 w-6 transition-transform group-hover:translate-x-1" />
               </Button>
             </a>
           
-          </motion.div>
-        </motion.div>
+          </Motion.div>
+        </Motion.div>
       </section>
 
       <section className="py-8 border-b border-white/5">
@@ -91,13 +91,13 @@ export default function Home() {
                 <span className="text-[10px] font-medium tracking-[0.3em] uppercase text-white/60">Global Markets</span>
                 <h3 className="text-2xl font-light text-white">Predict the World Cup</h3>
               </div>
-              <motion.div 
+              <Motion.div 
                 whileHover={{ scale: 1.01 }}
                 className="w-full max-w-[320px] h-[600px] rounded-[2rem] border border-white/10 bg-white/5 flex items-center justify-center relative group"
               >
                 <img src="/public-bet-example.png" alt="World Cup Prediction" className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity p-4" />
                 <div className="absolute top-4 right-4 px-3 py-1 border border-white/20 rounded-full text-[9px] font-medium tracking-widest text-white uppercase">Public</div>
-              </motion.div>
+              </Motion.div>
               <p className="text-muted-foreground font-light leading-relaxed text-sm max-w-sm">Join thousands in predicting the biggest sporting events on earth. Track global sentiment and lock in your stake.</p>
             </div>
 
@@ -107,13 +107,13 @@ export default function Home() {
                 <span className="text-[10px] font-medium tracking-[0.3em] uppercase text-white/60">Community Spaces</span>
                 <h3 className="text-2xl font-light text-white">Office UFC Rivalries</h3>
               </div>
-              <motion.div 
+              <Motion.div 
                 whileHover={{ scale: 1.01 }}
                 className="w-full max-w-[320px] h-[600px] rounded-[2rem] border border-white/10 bg-white/5 flex items-center justify-center relative group"
               >
                 <img src="/private-bet-example.png" alt="Office UFC Prediction" className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity p-4" />
                 <div className="absolute top-4 right-4 px-3 py-1 border border-white/20 rounded-full text-[9px] font-medium tracking-widest text-white uppercase">Private</div>
-              </motion.div>
+              </Motion.div>
               <p className="text-muted-foreground font-light leading-relaxed text-sm max-w-sm">Create private group chats for your inner circle. Bet on the next fight night or office games with custom markets.</p>
             </div>
           </div>
@@ -137,7 +137,7 @@ export default function Home() {
                 { icon: Shield, title: "Verified Reputation", desc: "Your accuracy is your passport. Build a track record that matters." },
                 { icon: Zap, title: "Real-Time Volatility", desc: "Experience the pulse of the crowd with sub-second probability updates." }
               ].map((item, idx) => (
-                <motion.div 
+                <Motion.div 
                   key={idx} 
                   whileHover={{ x: 10 }}
                   className="flex gap-8 group cursor-default"
@@ -149,12 +149,12 @@ export default function Home() {
                     <h4 className="font-medium text-xl mb-2 text-white/90">{item.title}</h4>
                     <p className="text-muted-foreground text-lg font-light opacity-60 group-hover:opacity-100 transition-opacity">{item.desc}</p>
                   </div>
-                </motion.div>
+                </Motion.div>
               ))}
             </div>
           </div>
 
-          <motion.div 
+          <Motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -168,7 +168,7 @@ export default function Home() {
                 </div>
                 
                 <div className="space-y-6 w-full max-w-sm mx-auto">
-                   <motion.div 
+                   <Motion.div 
                     layout
                     className="p-8 bg-background/40 border border-white/5 rounded-[2.5rem] space-y-8 relative overflow-hidden"
                    >
@@ -198,7 +198,7 @@ export default function Home() {
 
                       <AnimatePresence mode="wait">
                         {prediction && (
-                          <motion.div
+                          <Motion.div
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
@@ -219,14 +219,14 @@ export default function Home() {
                             <p className="text-[10px] text-muted-foreground italic text-center opacity-60">
                               After fee: {checkoutDetails.fee} payout
                             </p>
-                          </motion.div>
+                          </Motion.div>
                         )}
                       </AnimatePresence>
-                   </motion.div>
+                   </Motion.div>
                 </div>
               </div>
             </Card>
-          </motion.div>
+          </Motion.div>
         </div>
       </section>
 
@@ -243,7 +243,7 @@ export default function Home() {
               { icon: TrendingUp, title: "Predict", desc: "Place your predictions with precision using our risk-free Play Mode or real-market liquidity." },
               { icon: Trophy, title: "Earn", desc: "Rank up based on actual accuracy, climb leaderboards, and verify your track record globally." }
             ].map((step, idx) => (
-              <motion.div 
+              <Motion.div 
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -256,7 +256,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-medium text-white/90">{step.title}</h3>
                 <p className="text-muted-foreground text-lg leading-relaxed font-light opacity-70 group-hover:opacity-100 transition-opacity">{step.desc}</p>
-              </motion.div>
+              </Motion.div>
             ))}
           </div>
         </div>
@@ -272,14 +272,14 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex gap-8">
-                <motion.div whileHover={{ y: -5 }} className="p-8 bg-secondary/20 border border-white/5 rounded-[2.5rem] flex flex-col items-center min-w-[120px]">
+                <Motion.div whileHover={{ y: -5 }} className="p-8 bg-secondary/20 border border-white/5 rounded-[2.5rem] flex flex-col items-center min-w-[120px]">
                   <span className="text-4xl font-light text-primary">17+</span>
                   <span className="text-[10px] text-muted-foreground font-medium tracking-[0.2em] mt-2 opacity-60">AGE</span>
-                </motion.div>
-                <motion.div whileHover={{ y: -5 }} className="p-8 bg-secondary/20 border border-white/5 rounded-[2.5rem] flex flex-col items-center min-w-[120px]">
+                </Motion.div>
+                <Motion.div whileHover={{ y: -5 }} className="p-8 bg-secondary/20 border border-white/5 rounded-[2.5rem] flex flex-col items-center min-w-[120px]">
                   <Shield className="h-8 w-8 text-white/60 mb-2" strokeWidth={1.5} />
                   <span className="text-[10px] text-muted-foreground font-medium tracking-[0.2em] uppercase opacity-60">Escrow</span>
-                </motion.div>
+                </Motion.div>
               </div>
             </div>
 
@@ -304,7 +304,7 @@ export default function Home() {
 
       {/* Final CTA */}
       <section className="py-32 container px-4 sm:px-8">
-        <motion.div
+        <Motion.div
           whileHover={{ scale: 1.01 }}
           transition={{ duration: 0.5 }}
         >
@@ -330,7 +330,7 @@ export default function Home() {
               </div>
             </div>
           </Card>
-        </motion.div>
+        </Motion.div>
       </section>
     </div>
   );

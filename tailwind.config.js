@@ -1,10 +1,14 @@
+import tailwindAnimate from "tailwindcss-animate"
+import typography from "@tailwindcss/typography"
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [tailwindAnimate, typography],
+
   theme: {
     container: {
       center: true,
