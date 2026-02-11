@@ -56,7 +56,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-10 items-center sm:items-start text-center sm:text-left mb-20">
             <div className="w-36 h-36 sm:w-52 sm:h-52 rounded-[2.5rem] liquid-panel overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] shrink-0 p-1 flex items-center justify-center">
               <div className="w-full h-full rounded-[2.3rem] overflow-hidden relative group">
-                <img src="/icon.png" alt="AnyMarket" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <img src="/icon.png" alt="AnyMarket Logo - Unified Social Prediction Market and Forecasting Platform" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
               </div>
             </div>
@@ -133,7 +133,11 @@ export default function Home() {
               >
                 {carouselItems.map((item, i) => (
                   <div key={i} className="flex-shrink-0 w-[260px] sm:w-[340px] aspect-[9/16] rounded-[3rem] overflow-hidden liquid-panel snap-center shadow-[0_30px_60px_rgba(0,0,0,0.6)] relative group/item border border-white/10">
-                    <img src={item.url} alt={item.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover/item:scale-105" />
+                    <img 
+                      src={item.url} 
+                      alt={`AnyMarket ${item.title} - ${item.type} view showcasing social prediction features`} 
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover/item:scale-105" 
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-90" />
                     <div className="absolute inset-x-0 bottom-0 p-8 transform translate-y-2 group-hover/item:translate-y-0 transition-transform duration-500">
                       <span className="text-[10px] font-semibold text-primary uppercase tracking-[0.3em] mb-2 block">{item.type}</span>
