@@ -4,26 +4,29 @@
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%; /* Apple Dark background */
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --background: 240 10% 2%;
+    /* Deeper Black */
+    --foreground: 0 0% 100%;
+    --card: 240 10% 4%;
+    --card-foreground: 0 0% 100%;
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 211 100% 50%; /* Apple Blue #007AFF */
+    --primary: 211 100% 55%;
+    /* Brighter Apple Blue */
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 3.7% 15.9%;
+    --secondary: 240 3.7% 10%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 240 3.7% 10%;
+    --muted-foreground: 240 5% 70%;
     --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --radius: 0.5rem;
+    --ring: 211 100% 50%;
+    --radius: 1.25rem;
+    /* Smoother, rounder corners */
     --apple-blue: 211 100% 50%;
   }
 }
@@ -32,24 +35,71 @@
   .animate-fade-in {
     animation: fadeIn 0.8s ease-out forwards;
   }
+
   .animate-slide-up {
     animation: slideUp 0.8s ease-out forwards;
   }
+
   .bg-glass {
-    @apply bg-white/5 backdrop-blur-md border border-white/5;
+    @apply bg-white/[0.03] backdrop-blur-2xl border border-white/[0.08] shadow-[0_8px_32px_0_rgba(0, 0, 0, 0.37)];
   }
-  .text-metallic {
-    @apply text-white;
+
+  .liquid-panel {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
   }
+
+  .liquid-button {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+      0 4px 15px rgba(0, 0, 0, 0.3),
+      inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .liquid-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .liquid-button:hover::after {
+    opacity: 1;
+  }
+
+  .shiny-text {
+    background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
   .app-store-section {
     @apply py-6 border-b border-border/40 last:border-0;
   }
+
   .app-icon {
     @apply rounded-[22%] shadow-lg overflow-hidden;
   }
+
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -57,23 +107,42 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @layer base {
   * {
     @apply border-border/20;
   }
+
   body {
     @apply bg-background text-foreground selection:bg-primary/30;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply tracking-tighter;
   }
 }

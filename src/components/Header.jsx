@@ -13,13 +13,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-primary/10 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between px-6 sm:px-8">
-        <div className="mr-4 hidden md:flex items-center">
-          <Link to="/" className="mr-8 flex items-center space-x-3 group" aria-label="AnyMarket Home">
-            <div className="w-10 h-10 rounded-xl bg-secondary border border-primary/10 p-1.5 flex items-center justify-center transition-all group-hover:scale-110 group-hover:border-primary/30 shadow-lg shadow-primary/5">
-              <img src="/icon.png" alt="AnyMarket Logo" className="w-full h-full object-contain" />
-            </div>
-            <span className="hidden font-light text-2xl tracking-tighter text-accent/90 sm:inline-block">AnyMarket</span>
-          </Link>
+        <div className="flex items-center gap-8">
           <NavigationMenu aria-label="Main Navigation">
             <NavigationMenuList className="gap-4">
               <NavigationMenuItem>
@@ -36,29 +30,17 @@ export default function Header() {
           </NavigationMenu>
         </div>
         
-        {/* Mobile Logo */}
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-           <Link to="/" className="mr-6 flex items-center space-x-2 md:hidden" aria-label="AnyMarket Home">
-            <div className="w-10 h-10 rounded-xl bg-secondary border border-primary/20 p-1.5 flex items-center justify-center">
-              <img src="/icon.png" alt="AnyMarket Logo" className="w-full h-full object-contain" />
-            </div>
-            <span className="font-light text-2xl tracking-tighter text-accent/90">AnyMarket</span>
-          </Link>
-
-          <div className="w-full flex-1 md:w-auto md:flex-none">
-          </div>
-          <nav className="flex items-center space-x-4" aria-label="External Links">
-            <a
-              href="https://anymarket.expo.app/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Launch AnyMarket Web Application"
-            >
-              <Button size="sm" className="bg-secondary/50 border border-primary/20 text-primary/80 hover:bg-secondary hover:text-primary font-medium px-6 rounded-full shadow-lg transition-all active:scale-95">
-                Open App
-              </Button>
-            </a>
-          </nav>
+        <div className="flex items-center gap-4">
+          <a
+            href="https://anymarket.expo.app/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Launch AnyMarket Web Application"
+          >
+            <Button size="sm" className="bg-secondary/50 border border-primary/20 text-primary/80 hover:bg-secondary hover:text-primary font-medium px-6 rounded-full shadow-lg transition-all active:scale-95">
+              Open App
+            </Button>
+          </a>
         </div>
       </div>
     </header>
