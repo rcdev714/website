@@ -1,338 +1,231 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { 
-  ArrowRight, 
-  TrendingUp, 
-  Users, 
-  Shield, 
-  Trophy, 
-  MessageSquare, 
+  Share,
+  MessageSquare,
+  Shield,
   Zap,
   Globe,
-  Settings,
-  CheckCircle2
+  TrendingUp,
+  Trophy,
+  ArrowRight,
+  ExternalLink,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { motion as Motion, AnimatePresence } from 'framer-motion';
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
-};
+// Import lifestyle images from src/assets
+import pokerImg from '@/assets/anymarket_lifestyle_poker_1770770406598.png';
+import stadiumImg from '@/assets/anymarket_lifestyle_stadium_1770770419818.png';
+import tvImg from '@/assets/anymarket_lifestyle_watching_tv_1770770433577.png';
+import mockupImg from '@/assets/anymarket_v2_mockup_1_1770770323605.png';
 
-const stagger = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
+const carouselItems = [
+  { url: "/public-bet-example.png", title: "Global Markets", type: "App" },
+  { url: pokerImg, title: "Social Stakes", type: "Lifestyle" },
+  { url: "/private-bet-example.png", title: "Private Groups", type: "App" },
+  { url: stadiumImg, title: "Live Events", type: "Lifestyle" },
+  { url: tvImg, title: "Watch Parties", type: "Lifestyle" },
+  { url: mockupImg, title: "Next Gen UI", type: "Lifestyle" },
+];
 
 export default function Home() {
   const [prediction, setPrediction] = useState(null);
+  const scrollRef = useRef(null);
 
-  const checkoutDetails = {
-    bet: "100.00",
-    win: "468.20",
-    profit: "368.20",
-    fee: "92.05%"
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = direction === 'left' ? -300 : 300;
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
   };
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-3.5rem)] overflow-x-hidden">
-      {/* Hero Section */}
-      <section 
-        aria-labelledby="hero-heading"
-        className="relative flex flex-col items-center justify-center pt-12 pb-8 px-6 text-center md:pt-24 md:pb-12 overflow-hidden"
-      >
-        <div className="absolute inset-0 bg-background pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-white/5 rounded-full pointer-events-none opacity-20" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-white/5 rounded-full pointer-events-none opacity-20" />
-
-        <Motion.div 
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          variants={stagger}
-          className="container relative z-10 space-y-8"
-        >
-          <Motion.div variants={fadeInUp} className="flex flex-col items-center space-y-8">
-            <div className="w-24 h-24 rounded-3xl border border-white/10 p-4 bg-white/5 flex items-center justify-center">
-              <img src="/icon.png" alt="AnyMarket Logo" className="w-full h-full object-contain" />
+    <div className="flex flex-col min-h-screen bg-background text-foreground pb-20">
+      {/* Refined Navigation Bar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-xl border-b border-border/10">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center text-sans">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg overflow-hidden border border-border/10">
+              <img src="/icon.png" alt="Logo" className="w-full h-full object-cover" />
             </div>
-            <div className="space-y-4">
-              <h1 id="hero-heading" className="text-5xl md:text-7xl font-extralight tracking-tighter text-white">
-                AnyMarket
-              </h1>
-              <p className="text-xl md:text-2xl font-light text-white/60 tracking-tight">
-                Predict everything with friends
-              </p>
-            </div>
-          </Motion.div>
-          
-          <Motion.div variants={fadeInUp} className="flex flex-col gap-6 justify-center items-center sm:flex-row pt-8">
-            <a href="https://anymarket.expo.app/" target="_blank" rel="noreferrer" aria-label="Open AnyMarket Web App">
-              <Button size="lg" className="h-16 px-12 text-xl rounded-full bg-white text-black hover:bg-white/90 shadow-xl transition-all hover:scale-[1.02] active:scale-95 group font-medium border-none">
-                Launch App <ArrowRight className="ml-2 h-6 w-6 transition-transform group-hover:translate-x-1" />
+            <span className="font-bold tracking-tighter text-lg">AnyMarket</span>
+          </div>
+          <div className="flex items-center gap-6">
+            <a href="https://anymarket.expo.app/" target="_blank" rel="noreferrer">
+              <Button size="sm" className="rounded-full bg-primary text-white font-bold h-9">
+                Open Web App
               </Button>
             </a>
-          
-          </Motion.div>
-        </Motion.div>
-      </section>
+          </div>
+        </div>
+      </nav>
 
-      <section className="py-8 border-b border-white/5">
-        <div className="container px-4 space-y-12">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
-            {/* Public Market Example */}
-            <div className="flex flex-col items-center text-center space-y-6">
+      <main className="pt-24">
+        {/* Simplified Hero Hub */}
+        <section className="max-w-4xl mx-auto px-6 py-8 sm:py-12">
+          <div className="flex flex-col sm:flex-row gap-8 items-center sm:items-start text-center sm:text-left mb-16">
+            <div className="w-32 h-32 sm:w-44 sm:h-44 rounded-[2rem] overflow-hidden shadow-2xl shrink-0 border border-border/10">
+              <img src="/icon.png" alt="AnyMarket" className="w-full h-full object-cover" />
+            </div>
+            <div className="flex flex-col flex-1 gap-6">
               <div className="space-y-2">
-                <span className="text-[10px] font-medium tracking-[0.3em] uppercase text-white/60">Global Markets</span>
-                <h3 className="text-2xl font-light text-white">Predict the World Cup</h3>
-              </div>
-              <Motion.div 
-                whileHover={{ scale: 1.01 }}
-                className="w-full max-w-[320px] h-[600px] rounded-[2rem] border border-white/10 bg-white/5 flex items-center justify-center relative group"
-              >
-                <img src="/public-bet-example.png" alt="World Cup Prediction" className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity p-4" />
-                <div className="absolute top-4 right-4 px-3 py-1 border border-white/20 rounded-full text-[9px] font-medium tracking-widest text-white uppercase">Public</div>
-              </Motion.div>
-              <p className="text-muted-foreground font-light leading-relaxed text-sm max-w-sm">Join thousands in predicting the biggest sporting events on earth. Track global sentiment and lock in your stake.</p>
-            </div>
-
-            {/* Private Market Example */}
-            <div className="flex flex-col items-center text-center space-y-6">
-              <div className="space-y-2">
-                <span className="text-[10px] font-medium tracking-[0.3em] uppercase text-white/60">Community Spaces</span>
-                <h3 className="text-2xl font-light text-white">Office UFC Rivalries</h3>
-              </div>
-              <Motion.div 
-                whileHover={{ scale: 1.01 }}
-                className="w-full max-w-[320px] h-[600px] rounded-[2rem] border border-white/10 bg-white/5 flex items-center justify-center relative group"
-              >
-                <img src="/private-bet-example.png" alt="Office UFC Prediction" className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity p-4" />
-                <div className="absolute top-4 right-4 px-3 py-1 border border-white/20 rounded-full text-[9px] font-medium tracking-widest text-white uppercase">Private</div>
-              </Motion.div>
-              <p className="text-muted-foreground font-light leading-relaxed text-sm max-w-sm">Create private group chats for your inner circle. Bet on the next fight night or office games with custom markets.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 container px-4 sm:px-8">
-        <div className="grid lg:grid-cols-2 gap-24 items-center max-w-7xl mx-auto">
-          <div className="space-y-16">
-            <div className="space-y-8">
-              <h2 className="text-5xl font-extralight tracking-tighter text-white leading-tight">Anything Goes.</h2>
-              <p className="text-muted-foreground text-2xl leading-[1.6] font-light opacity-90 max-w-xl">
-                Create group chats with friend and bet on outcomes? who wins the ofice blackjack? Movie outcome? Or Global Geopolitics, anything goes. 
-                <span className="text-white/60 block mt-4 font-normal">If it can be defined, it can be predicted.</span>
-              </p>
-            </div>
-
-            <div className="space-y-12">
-              {[
-                { icon: MessageSquare, title: "Contextual Discussions", desc: "Every prediction market has its own space for research sharing and debate." },
-                { icon: Shield, title: "Verified Reputation", desc: "Your accuracy is your passport. Build a track record that matters." },
-                { icon: Zap, title: "Real-Time Volatility", desc: "Experience the pulse of the crowd with sub-second probability updates." }
-              ].map((item, idx) => (
-                <Motion.div 
-                  key={idx} 
-                  whileHover={{ x: 10 }}
-                  className="flex gap-8 group cursor-default"
-                >
-                  <div className="shrink-0 w-14 h-14 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-white/60 transition-all group-hover:border-white/30 group-hover:bg-white/10 group-hover:text-white">
-                    <item.icon size={24} strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-xl mb-2 text-white/90">{item.title}</h4>
-                    <p className="text-muted-foreground text-lg font-light opacity-60 group-hover:opacity-100 transition-opacity">{item.desc}</p>
-                  </div>
-                </Motion.div>
-              ))}
-            </div>
-          </div>
-
-          <Motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <Card className="relative border-white/10 overflow-hidden bg-white/5 rounded-[3rem] p-2 transition-all min-h-[500px] flex flex-col justify-center ring-1 ring-white/5 shadow-none">
-              <div className="p-10 space-y-10">
-                <div className="space-y-3 text-center">
-                  <h3 className="text-2xl font-light text-white/80 tracking-widest uppercase">Live Interactive Demo</h3>
-                  <div className="h-[1px] w-12 bg-primary/20 mx-auto" />
-                </div>
-                
-                <div className="space-y-6 w-full max-w-sm mx-auto">
-                   <Motion.div 
-                    layout
-                    className="p-8 bg-background/40 border border-white/5 rounded-[2.5rem] space-y-8 relative overflow-hidden"
-                   >
-                      <div className="space-y-4">
-                        <p className="font-light text-2xl text-white text-center leading-snug">Apple Vision Pro 2 <br /> launched by Q4 2026?</p>
-                        <div className="flex justify-between items-center text-[10px] font-medium tracking-[0.2em] text-muted-foreground uppercase opacity-60">
-                          <span>POOL: 85,200 🟪</span>
-                          <span className="flex items-center gap-2"><span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" /> LIVE</span>
-                        </div>
-                      </div>
-
-                      <div className="flex gap-4 relative z-10">
-                        <Button 
-                          onClick={() => setPrediction('YES')}
-                          className={`flex-1 h-14 rounded-2xl transition-all ${prediction === 'YES' ? 'bg-white text-black shadow-[0_0_30px_rgba(255,255,255,0.4)]' : 'bg-white/10 text-white hover:bg-white/20'}`}
-                        >
-                          YES (42%)
-                        </Button>
-                        <Button 
-                          onClick={() => setPrediction('NO')}
-                          variant="outline" 
-                          className={`flex-1 h-14 rounded-2xl transition-all ${prediction === 'NO' ? 'border-white bg-white/10 text-white' : 'border-white/10 text-white/80 hover:bg-white/5'}`}
-                        >
-                          NO (58%)
-                        </Button>
-                      </div>
-
-                      <AnimatePresence mode="wait">
-                        {prediction && (
-                          <Motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="pt-6 border-t border-white/10 space-y-4"
-                          >
-                            <div className="flex justify-between text-sm font-light">
-                              <span className="text-muted-foreground">Your Bet</span>
-                              <span className="text-white">${checkoutDetails.bet}</span>
-                            </div>
-                            <div className="flex justify-between text-sm font-light">
-                              <span className="text-muted-foreground">If You Win, You Get Back</span>
-                              <span className="text-white">${checkoutDetails.win}</span>
-                            </div>
-                            <div className="flex justify-between text-lg font-medium pt-2">
-                              <span className="text-white/80">Net Profit</span>
-                              <span className="text-green-500">+${checkoutDetails.profit}</span>
-                            </div>
-                            <p className="text-[10px] text-muted-foreground italic text-center opacity-60">
-                              After fee: {checkoutDetails.fee} payout
-                            </p>
-                          </Motion.div>
-                        )}
-                      </AnimatePresence>
-                   </Motion.div>
-                </div>
-              </div>
-            </Card>
-          </Motion.div>
-        </div>
-      </section>
-
-      <section className="py-20 relative border-y border-white/5">
-        <div className="container px-4">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-4xl font-light tracking-tight sm:text-5xl text-white">How it Works</h2>
-            <div className="h-[1px] w-24 bg-primary/20 mx-auto" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-6xl mx-auto">
-            {[
-              { icon: Globe, title: "Discover", desc: "Find public markets or create private spaces to track the topics your community cares about." },
-              { icon: TrendingUp, title: "Predict", desc: "Place your predictions with precision using our risk-free Play Mode or real-market liquidity." },
-              { icon: Trophy, title: "Earn", desc: "Rank up based on actual accuracy, climb leaderboards, and verify your track record globally." }
-            ].map((step, idx) => (
-              <Motion.div 
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.2 }}
-                viewport={{ once: true }}
-                className="space-y-6 text-center group cursor-default"
-              >
-                <div className="w-20 h-20 bg-white/5 border border-white/10 text-white/80 rounded-[2rem] flex items-center justify-center mx-auto mb-8 transition-all group-hover:scale-110 group-hover:border-white/30 group-hover:text-white">
-                  <step.icon size={36} strokeWidth={1.5} />
-                </div>
-                <h3 className="text-2xl font-medium text-white/90">{step.title}</h3>
-                <p className="text-muted-foreground text-lg leading-relaxed font-light opacity-70 group-hover:opacity-100 transition-opacity">{step.desc}</p>
-              </Motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="py-16 relative border-t border-white/5">
-        <div className="container px-4">
-          <div className="max-w-5xl mx-auto space-y-16">
-            <div className="flex flex-col md:flex-row gap-8 items-center justify-between text-center md:text-left">
-              <div className="space-y-4">
-                <h2 className="text-4xl font-light tracking-tight text-white">Safety by Design.</h2>
-                <p className="text-muted-foreground text-xl font-light max-w-md opacity-70">
-                  We build tools for healthy communities and secure transactions.
-                </p>
-              </div>
-              <div className="flex gap-8">
-                <Motion.div whileHover={{ y: -5 }} className="p-8 bg-secondary/20 border border-white/5 rounded-[2.5rem] flex flex-col items-center min-w-[120px]">
-                  <span className="text-4xl font-light text-primary">17+</span>
-                  <span className="text-[10px] text-muted-foreground font-medium tracking-[0.2em] mt-2 opacity-60">AGE</span>
-                </Motion.div>
-                <Motion.div whileHover={{ y: -5 }} className="p-8 bg-secondary/20 border border-white/5 rounded-[2.5rem] flex flex-col items-center min-w-[120px]">
-                  <Shield className="h-8 w-8 text-white/60 mb-2" strokeWidth={1.5} />
-                  <span className="text-[10px] text-muted-foreground font-medium tracking-[0.2em] uppercase opacity-60">Escrow</span>
-                </Motion.div>
-              </div>
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-10">
-               {[
-                 { title: "Zero Tolerance", desc: "Our platform features automated and human moderation to ensure no objectionable content reaches your feed." },
-                 { title: "Bank-Grade Security", desc: "Encrypted data management with Stripe & Supabase integration. Your privacy is non-negotiable." }
-               ].map((box, i) => (
-                 <Card key={i} className="bg-transparent border border-white/10 shadow-none group hover:border-white/20 transition-all rounded-[2.5rem]">
-                    <CardContent className="p-12 space-y-6">
-                      <h4 className="font-medium text-xl text-white/90 uppercase tracking-[0.2em]">{box.title}</h4>
-                      <p className="text-muted-foreground text-lg leading-relaxed font-light opacity-70 group-hover:opacity-100 transition-opacity">
-                        {box.desc}
-                      </p>
-                    </CardContent>
-                 </Card>
-               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-32 container px-4 sm:px-8">
-        <Motion.div
-          whileHover={{ scale: 1.01 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Card className="border border-white/10 p-12 md:p-32 text-center rounded-[5rem] space-y-12 relative overflow-hidden group transition-all duration-700 bg-transparent shadow-none">
-            <div className="relative z-10 space-y-10 max-w-3xl mx-auto">
-              <div className="space-y-8 py-4">
-                <p className="text-xl md:text-3xl font-light tracking-tight text-white/90 leading-relaxed italic max-w-2xl mx-auto">
-                  "We now have the ability to create any market from thin air. If it can be measured, it can be predicted—and some can be predicted with surprising accuracy."
-                </p>
-                <div className="flex items-center justify-center gap-4">
-                  <div className="h-[1px] w-6 bg-white/10" />
-                  <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-white/40">Founder</p>
-                  <div className="h-[1px] w-6 bg-white/10" />
-                </div>
+                <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tighter">Predict the future with Friends.</h1>
+                <p className="text-muted-foreground text-lg sm:text-xl font-light">Social Prediction Market Platform</p>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
-                <a href="https://anymarket.expo.app/" target="_blank" rel="noreferrer" className="w-full sm:w-auto">
-                  <Button size="lg" className="w-full h-20 px-16 text-2xl rounded-full bg-white text-black font-medium shadow-2xl hover:bg-white/90 hover:scale-[1.02] transition-all active:scale-95">
-                    Launch AnyMarket
-                  </Button>
-                </a>
+              {/* Platform Availability */}
+              <div className="flex flex-wrap gap-4 items-center justify-center sm:justify-start">
+                <div className="flex flex-col items-center sm:items-start gap-1">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-primary">Web</span>
+                  <div className="px-3 py-1 bg-primary/10 border border-primary/20 rounded-md text-[11px] font-bold text-primary flex items-center gap-1.5">
+                    Available Now <ArrowRight size={10} />
+                  </div>
+                </div>
+                <div className="flex flex-col items-center sm:items-start gap-1 opacity-50">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">iOS</span>
+                  <div className="px-3 py-1 bg-secondary/20 border border-border/10 rounded-md text-[11px] font-bold text-muted-foreground">
+                    Coming Soon
+                  </div>
+                </div>
+                <div className="flex flex-col items-center sm:items-start gap-1 opacity-50">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Android</span>
+                  <div className="px-3 py-1 bg-secondary/20 border border-border/10 rounded-md text-[11px] font-bold text-muted-foreground">
+                    Coming Soon
+                  </div>
+                </div>
               </div>
             </div>
-          </Card>
-        </Motion.div>
-      </section>
+          </div>
+
+          {/* Core Vision Section */}
+          <div className="space-y-4 pt-8 border-t border-border/10">
+            <h2 className="text-xl font-bold tracking-tight uppercase text-muted-foreground/40 text-[10px]">Our Vision</h2>
+            <p className="text-muted-foreground text-lg leading-relaxed font-light">
+              Predicting the future shouldn't be lonely. We are building a social layer for global forecasting. Whether it's high-stakes geopolitics or office poker night, AnyMarket makes speculation fun, transparent, and cooperative. If it can be defined, it should be predictable.
+            </p>
+          </div>
+        </section>
+
+        {/* Unified Preview Carousel with Arrows */}
+        <section className="py-12 bg-secondary/5 relative overflow-hidden">
+          <div className="max-w-6xl mx-auto px-6 space-y-6">
+            <div className="flex justify-between items-end">
+              <h2 className="text-xl font-bold tracking-tight">The Experience</h2>
+              <div className="flex gap-2">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="rounded-full h-8 w-8 border border-border/20 bg-background/50 backdrop-blur"
+                  onClick={() => scroll('left')}
+                >
+                  <ChevronLeft size={16} />
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="rounded-full h-8 w-8 border border-border/20 bg-background/50 backdrop-blur"
+                  onClick={() => scroll('right')}
+                >
+                  <ChevronRight size={16} />
+                </Button>
+              </div>
+            </div>
+            
+            <div className="relative">
+              <div 
+                ref={scrollRef} 
+                className="flex gap-4 sm:gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory py-4 -mx-6 px-6 sm:mx-0 sm:px-0"
+              >
+                {carouselItems.map((item, i) => (
+                  <div key={i} className="flex-shrink-0 w-[220px] sm:w-[280px] aspect-[9/16] rounded-3xl overflow-hidden border border-border/10 snap-center shadow-2xl relative bg-black group/item">
+                    <img src={item.url} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110" />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6">
+                      <span className="text-[10px] font-bold text-primary uppercase tracking-widest mb-1 block">{item.type}</span>
+                      <h3 className="text-white text-base font-bold leading-tight">{item.title}</h3>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Simplified Feature Grid (No Redundancy) */}
+        <section className="py-24 max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-12">
+            {[
+              { icon: MessageSquare, title: "Social First", desc: "Every market is a conversation. Shared research, heated debates, and friend-group rivalries." },
+              { icon: Shield, title: "Verified Record", desc: "Build your reputation as a forecaster. Your track record is public and immutable." },
+              { icon: Zap, title: "Pure Performance", desc: "Sub-second updates and bank-grade security for a seamless, professional experience." }
+            ].map((f, i) => (
+              <div key={i} className="space-y-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
+                  <f.icon size={24} />
+                </div>
+                <h3 className="text-xl font-bold">{f.title}</h3>
+                <p className="text-muted-foreground font-light leading-relaxed">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Demo Section */}
+        <section className="py-12">
+          <div className="max-w-4xl mx-auto px-6">
+            <Card className="border-none bg-secondary/20 rounded-[3rem] overflow-hidden">
+              <CardContent className="p-10 sm:p-16 flex flex-col items-center text-center gap-8">
+                <div className="space-y-4">
+                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight">Apple Vision Pro 2 <br /> launched by Q4 2026?</h3>
+                  <div className="flex gap-4 justify-center items-center text-xs font-bold text-muted-foreground uppercase tracking-widest">
+                    <span>Pool: 85.2K 🟪</span>
+                    <span className="flex items-center gap-1.5 text-green-500 font-bold"><span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" /> LIVE</span>
+                  </div>
+                </div>
+
+                <div className="flex gap-4 w-full max-w-sm">
+                  <Button 
+                    onClick={() => setPrediction('YES')}
+                    className={`flex-1 h-14 rounded-2xl font-bold text-lg transition-all ${prediction === 'YES' ? 'bg-primary text-white shadow-lg scale-105' : 'bg-background hover:bg-background/80'}`}
+                  >
+                    YES
+                  </Button>
+                  <Button 
+                    onClick={() => setPrediction('NO')}
+                    className={`flex-1 h-14 rounded-2xl font-bold text-lg transition-all ${prediction === 'NO' ? 'bg-primary text-white shadow-lg scale-105' : 'bg-background hover:bg-background/80'}`}
+                  >
+                    NO
+                  </Button>
+                </div>
+
+                <AnimatePresence>
+                  {prediction && (
+                    <Motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="space-y-1">
+                      <p className="text-primary font-bold">Predicted {prediction} successfully.</p>
+                      <p className="text-xs text-muted-foreground font-light italic">Connecting to wallet...</p>
+                    </Motion.div>
+                  )}
+                </AnimatePresence>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="py-32 max-w-4xl mx-auto px-6 text-center space-y-10">
+          <div className="space-y-4">
+            <h2 className="text-4xl font-bold tracking-tight">Join the Network.</h2>
+            <p className="text-muted-foreground text-xl font-light">Start creating and predicting with your people today.</p>
+          </div>
+          <a href="https://anymarket.expo.app/" target="_blank" rel="noreferrer" className="inline-block">
+            <Button size="lg" className="h-16 px-12 text-xl rounded-full bg-primary text-white font-bold shadow-2xl hover:scale-105 transition-all">
+              Launch AnyMarket Web App
+            </Button>
+          </a>
+        </section>
+      </main>
     </div>
   );
 }
-
